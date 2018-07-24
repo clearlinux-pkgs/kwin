@@ -1,0 +1,27 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+buildreq-kde
+kdecoration-dev
+xcb-util-keysyms-dev
+libinput-dev
+xcb-util-dev
+xcb-util-cursor-dev
+xcb-util-image-dev
+xcb-util-keysyms-dev
+xcb-util-renderutil-dev
+xcb-util-wm-dev
+xcb-util-xrm-dev
+libxkbcommon-dev
+libICE-dev
+libSM-dev
+kjobwidgets-dev
+kitemviews-dev
+sonnet-dev
+attica-dev
+solid-dev
+kactivities-dev
+kscreenlocker-dev
+wayland-dev
+libepoxy-dev
+freetype-dev
+systemd-dev

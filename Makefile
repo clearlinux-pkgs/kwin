@@ -1,5 +1,5 @@
 PKG_NAME := kwin
-URL = 
+URL = https://github.com/KDE/kwin/archive/v5.13.4.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

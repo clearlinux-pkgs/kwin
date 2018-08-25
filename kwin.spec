@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.13.4
-Release  : 2
+Release  : 3
 URL      : https://github.com/KDE/kwin/archive/v5.13.4.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.13.4.tar.gz
 Summary  : No detailed summary available
@@ -18,6 +18,7 @@ BuildRequires : attica-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : freetype-dev
+BuildRequires : glibc-dev
 BuildRequires : kactivities-dev
 BuildRequires : kcmutils-dev
 BuildRequires : kcodecs-dev
@@ -44,13 +45,20 @@ BuildRequires : kwindowsystem-dev
 BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libcap-dev
 BuildRequires : libepoxy-dev
 BuildRequires : libinput-dev
 BuildRequires : libxkbcommon-dev
+BuildRequires : pkg-config
+BuildRequires : pkgconfig(Qt5Gui)
+BuildRequires : pkgconfig(epoxy)
 BuildRequires : pkgconfig(fontconfig)
+BuildRequires : pkgconfig(gbm)
+BuildRequires : pkgconfig(libdrm)
+BuildRequires : pkgconfig(libinput)
+BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
-BuildRequires : qtdeclarative-extras
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
@@ -130,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533055533
+export SOURCE_DATE_EPOCH=1535163548
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -138,7 +146,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1533055533
+export SOURCE_DATE_EPOCH=1535163548
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kwin
 cp COPYING %{buildroot}/usr/share/doc/kwin/COPYING
@@ -289,7 +297,19 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/kwin_export.h
+/usr/include/kwinanimationeffect.h
+/usr/include/kwinconfig.h
+/usr/include/kwineffects.h
+/usr/include/kwineffects_export.h
+/usr/include/kwinglobals.h
+/usr/include/kwinglplatform.h
+/usr/include/kwingltexture.h
+/usr/include/kwinglutils.h
+/usr/include/kwinglutils_export.h
+/usr/include/kwinglutils_funcs.h
+/usr/include/kwinxrenderutils.h
+/usr/include/kwinxrenderutils_export.h
 /usr/lib64/cmake/KWinDBusInterface/KWinDBusInterfaceConfig.cmake
 /usr/lib64/libkdeinit5_kwin_rules_dialog.so
 /usr/lib64/libkdeinit5_kwin_x11.so

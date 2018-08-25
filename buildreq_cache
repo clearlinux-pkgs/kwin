@@ -10,7 +10,6 @@ kpackage-dev
 kidletime-dev
 kglobalaccel-dev
 kcrash-dev
-qtdeclarative-extras
 ktextwidgets-dev
 kconfigwidgets-dev
 pkgconfig(fontconfig)

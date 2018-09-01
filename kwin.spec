@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.13.4
-Release  : 4
+Release  : 5
 URL      : https://github.com/KDE/kwin/archive/v5.13.4.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.13.4.tar.gz
 Summary  : No detailed summary available
@@ -15,6 +15,7 @@ Requires: kwin-lib
 Requires: kwin-data
 Requires: kwin-license
 BuildRequires : attica-dev
+BuildRequires : breeze
 BuildRequires : breeze-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
@@ -140,7 +141,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535777747
+export SOURCE_DATE_EPOCH=1535778163
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -148,7 +149,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535777747
+export SOURCE_DATE_EPOCH=1535778163
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kwin
 cp COPYING %{buildroot}/usr/share/doc/kwin/COPYING

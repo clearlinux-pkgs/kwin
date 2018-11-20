@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.14.3
-Release  : 10
+Release  : 11
 URL      : https://github.com/KDE/kwin/archive/v5.14.3.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.14.3.tar.gz
 Summary  : No detailed summary available
@@ -25,13 +25,29 @@ BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
 BuildRequires : kactivities-dev
+BuildRequires : kcmutils-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdeclarative-dev
 BuildRequires : kdecoration-dev
 BuildRequires : kglobalaccel-dev
+BuildRequires : kiconthemes-dev
 BuildRequires : kidletime-dev
+BuildRequires : kinit-dev
+BuildRequires : kio-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
+BuildRequires : kpackage-dev
 BuildRequires : kscreenlocker-dev
+BuildRequires : ktextwidgets-dev
 BuildRequires : kwayland-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
@@ -48,6 +64,7 @@ BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libinput)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
+BuildRequires : qtx11extras-dev
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
@@ -62,14 +79,6 @@ BuildRequires : xcb-util-xrm-dev
 
 %description
 - A collection of various documents and links related to KWin is at http://techbase.kde.org/Projects/KWin .
-
-%package abi
-Summary: abi components for the kwin package.
-Group: Default
-
-%description abi
-abi components for the kwin package.
-
 
 %package bin
 Summary: bin components for the kwin package.
@@ -135,7 +144,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541528850
+export SOURCE_DATE_EPOCH=1542746282
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -143,7 +152,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1541528850
+export SOURCE_DATE_EPOCH=1542746282
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp COPYING %{buildroot}/usr/share/package-licenses/kwin/COPYING
@@ -159,19 +168,6 @@ popd
 /usr/lib64/libexec/kwin_killer_helper
 /usr/lib64/libexec/kwin_rules_dialog
 /usr/lib64/libexec/org_kde_kwin_xclipboard_syncer
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libkwin.so.5.14.3.abi
-/usr/share/abi/libkwin.so.5.abi
-/usr/share/abi/libkwin4_effect_builtins.so.1.0.0.abi
-/usr/share/abi/libkwin4_effect_builtins.so.1.abi
-/usr/share/abi/libkwineffects.so.11.abi
-/usr/share/abi/libkwineffects.so.5.14.3.abi
-/usr/share/abi/libkwinglutils.so.11.abi
-/usr/share/abi/libkwinglutils.so.5.14.3.abi
-/usr/share/abi/libkwinxrenderutils.so.11.abi
-/usr/share/abi/libkwinxrenderutils.so.5.14.3.abi
 
 %files bin
 %defattr(-,root,root,-)

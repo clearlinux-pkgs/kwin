@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.14.4
-Release  : 13
+Release  : 14
 URL      : https://github.com/KDE/kwin/archive/v5.14.4.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.14.4.tar.gz
 Summary  : No detailed summary available
@@ -25,13 +25,29 @@ BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
 BuildRequires : kactivities-dev
+BuildRequires : kcmutils-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdeclarative-dev
 BuildRequires : kdecoration-dev
 BuildRequires : kglobalaccel-dev
+BuildRequires : kiconthemes-dev
 BuildRequires : kidletime-dev
+BuildRequires : kinit-dev
+BuildRequires : kio-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
+BuildRequires : kpackage-dev
 BuildRequires : kscreenlocker-dev
+BuildRequires : ktextwidgets-dev
 BuildRequires : kwayland-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
@@ -48,6 +64,7 @@ BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libinput)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
+BuildRequires : qtx11extras-dev
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
@@ -127,7 +144,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1543375418
+export SOURCE_DATE_EPOCH=1544808028
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -135,7 +152,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1543375418
+export SOURCE_DATE_EPOCH=1544808028
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp COPYING %{buildroot}/usr/share/package-licenses/kwin/COPYING
@@ -291,8 +308,6 @@ popd
 %defattr(-,root,root,-)
 /usr/include/*.h
 /usr/lib64/cmake/KWinDBusInterface/KWinDBusInterfaceConfig.cmake
-/usr/lib64/libkdeinit5_kwin_rules_dialog.so
-/usr/lib64/libkdeinit5_kwin_x11.so
 /usr/lib64/libkwin4_effect_builtins.so
 /usr/lib64/libkwineffects.so
 /usr/lib64/libkwinglutils.so
@@ -363,6 +378,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/libkdeinit5_kwin_rules_dialog.so
+/usr/lib64/libkdeinit5_kwin_x11.so
 /usr/lib64/libkwin.so.5
 /usr/lib64/libkwin.so.5.14.4
 /usr/lib64/libkwin4_effect_builtins.so.1

@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.14.4
-Release  : 14
+Release  : 15
 URL      : https://github.com/KDE/kwin/archive/v5.14.4.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.14.4.tar.gz
 Summary  : No detailed summary available

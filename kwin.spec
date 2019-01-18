@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.14.5
-Release  : 17
+Release  : 18
 URL      : https://github.com/KDE/kwin/archive/v5.14.5.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.14.5.tar.gz
 Summary  : An easy to use, but flexible, composited Window Manager

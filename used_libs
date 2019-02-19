@@ -1,6 +1,5 @@
 libKF5Activities.so.5
 libKF5Auth.so.5
-libKF5Codecs.so.5
 libKF5Completion.so.5
 libKF5ConfigCore.so.5
 libKF5ConfigGui.so.5
@@ -28,7 +27,6 @@ libKF5WidgetsAddons.so.5
 libKF5WindowSystem.so.5
 libKF5XmlGui.so.5
 libKScreenLocker.so.5
-libQt5Concurrent.so.5
 libQt5Core.so.5
 libQt5DBus.so.5
 libQt5Gui.so.5
@@ -39,7 +37,6 @@ libQt5Script.so.5
 libQt5Sensors.so.5
 libQt5Widgets.so.5
 libQt5X11Extras.so.5
-libQt5Xml.so.5
 libX11.so.6
 libc.so.6
 libdl.so.2
@@ -48,7 +45,6 @@ libepoxy.so.0
 libfontconfig.so.1
 libfreetype.so.6
 libgbm.so.1
-libgcc_s.so.1
 libinput.so.10
 libkdecorations2.so.5
 libkdecorations2private.so.6

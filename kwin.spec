@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.15.3.1
-Release  : 23
+Release  : 24
 URL      : https://github.com/KDE/kwin/archive/v5.15.3.1.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.15.3.1.tar.gz
 Summary  : An easy to use, but flexible, composited Window Manager
@@ -25,14 +25,30 @@ BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
 BuildRequires : kactivities-dev
+BuildRequires : kcmutils-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdeclarative-dev
 BuildRequires : kdecoration-dev
 BuildRequires : kglobalaccel-dev
+BuildRequires : kiconthemes-dev
 BuildRequires : kidletime-dev
+BuildRequires : kinit-dev
+BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
+BuildRequires : kpackage-dev
 BuildRequires : kscreenlocker-dev
+BuildRequires : ktextwidgets-dev
 BuildRequires : kwayland-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
@@ -49,6 +65,7 @@ BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libinput)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
+BuildRequires : qtx11extras-dev
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
@@ -130,7 +147,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552436811
+export SOURCE_DATE_EPOCH=1552437643
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -139,7 +156,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552436811
+export SOURCE_DATE_EPOCH=1552437643
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp COPYING %{buildroot}/usr/share/package-licenses/kwin/COPYING

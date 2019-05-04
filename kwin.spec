@@ -4,10 +4,10 @@
 #
 Name     : kwin
 Version  : 5.15.4
-Release  : 27
+Release  : 28
 URL      : https://github.com/KDE/kwin/archive/v5.15.4/kwin-5.15.4.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.15.4/kwin-5.15.4.tar.gz
-Summary  : An easy to use, but flexible, composited Window Manager
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0
 Requires: kwin-bin = %{version}-%{release}
@@ -25,14 +25,30 @@ BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
 BuildRequires : kactivities-dev
+BuildRequires : kcmutils-dev
+BuildRequires : kcodecs-dev
+BuildRequires : kcompletion-dev
+BuildRequires : kconfigwidgets-dev
+BuildRequires : kcrash-dev
+BuildRequires : kdeclarative-dev
 BuildRequires : kdecoration-dev
 BuildRequires : kglobalaccel-dev
+BuildRequires : kiconthemes-dev
 BuildRequires : kidletime-dev
+BuildRequires : kinit-dev
+BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kitemviews-dev
 BuildRequires : kjobwidgets-dev
+BuildRequires : knewstuff-dev
+BuildRequires : knotifications-dev
+BuildRequires : kpackage-dev
 BuildRequires : kscreenlocker-dev
+BuildRequires : ktextwidgets-dev
 BuildRequires : kwayland-dev
+BuildRequires : kwidgetsaddons-dev
+BuildRequires : kwindowsystem-dev
+BuildRequires : kxmlgui-dev
 BuildRequires : libICE-dev
 BuildRequires : libSM-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
@@ -49,6 +65,9 @@ BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libinput)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
+BuildRequires : qtbase-staticdev
+BuildRequires : qttools-staticdev
+BuildRequires : qtx11extras-dev
 BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
@@ -62,8 +81,9 @@ BuildRequires : xcb-util-wm-dev
 BuildRequires : xcb-util-xrm-dev
 
 %description
-# KWin
-KWin is an easy to use, but flexible, composited Window Manager for Xorg windowing systems (Wayland, X11) on Linux. Its primary usage is in conjunction with a Desktop Shell (e.g. KDE Plasma Desktop). KWin is designed to go out of the way; users should not notice that they use a window manager at all. Nevertheless KWin provides a steep learning curve for advanced features, which are available, if they do not conflict with the primary mission. KWin does not have a dedicated targeted user group, but follows the targeted user group of the Desktop Shell using KWin as it's window manager.
+Aurorae is a themeable window decoration for KWin.
+It supports theme files consisting of several SVG files for decoration and buttons. Themes can be
+installed and selected directly in the configuration module of KWin decorations.
 
 %package bin
 Summary: bin components for the kwin package.
@@ -130,15 +150,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554221570
+export SOURCE_DATE_EPOCH=1556945697
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1554221570
+export SOURCE_DATE_EPOCH=1556945697
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp COPYING %{buildroot}/usr/share/package-licenses/kwin/COPYING

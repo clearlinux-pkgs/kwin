@@ -14,7 +14,6 @@ libepoxy-dev
 libinput-dev
 libxkbcommon-dev
 qtbase-staticdev
-qttools-staticdev
 solid-dev
 sonnet-dev
 systemd-dev

@@ -37,6 +37,7 @@ libQt5Widgets.so.5
 libQt5X11Extras.so.5
 libX11.so.6
 libc.so.6
+libcap.so.2
 libdl.so.2
 libdrm.so.2
 libepoxy.so.0

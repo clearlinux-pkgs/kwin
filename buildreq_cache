@@ -1,4 +1,4 @@
-5.17.0
+5.17.1
 breeze-dev
 kcmutils-dev
 kcodecs-dev
@@ -24,3 +24,4 @@ libcap-dev
 pkgconfig(fontconfig)
 plasma-framework-dev
 qtx11extras-dev
+util-linux

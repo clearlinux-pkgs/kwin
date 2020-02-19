@@ -3015,6 +3015,7 @@ libkwin.so.5:_ZNK4KWin9X11Client12hasTransientEPKNS_14AbstractClientEb
 libkwin.so.5:_ZNK4KWin9X11Client12iconGeometryEv
 libkwin.so.5:_ZNK4KWin9X11Client12userNoBorderEv
 libkwin.so.5:_ZNK4KWin9X11Client13bufferMarginsEv
+libkwin.so.5:_ZNK4KWin9X11Client13inputGeometryEv
 libkwin.so.5:_ZNK4KWin9X11Client13isMaximizableEv
 libkwin.so.5:_ZNK4KWin9X11Client13isMinimizableEv
 libkwin.so.5:_ZNK4KWin9X11Client14bufferGeometryEv
@@ -3032,6 +3033,7 @@ libkwin.so.5:_ZNK4KWin9X11Client18fetchFirstInTabBoxEv
 libkwin.so.5:_ZNK4KWin9X11Client18userCanSetNoBorderEv
 libkwin.so.5:_ZNK4KWin9X11Client19clientPosToFramePosERK6QPoint
 libkwin.so.5:_ZNK4KWin9X11Client19framePosToClientPosERK6QPoint
+libkwin.so.5:_ZNK4KWin9X11Client19inputTransformationEv
 libkwin.so.5:_ZNK4KWin9X11Client19providesContextHelpEv
 libkwin.so.5:_ZNK4KWin9X11Client20calculateGravitationEb
 libkwin.so.5:_ZNK4KWin9X11Client20hasTransientInternalEPKS0_bR5QListIS2_E

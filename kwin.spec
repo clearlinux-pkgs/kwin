@@ -4,7 +4,7 @@
 #
 Name     : kwin
 Version  : 5.18.5
-Release  : 54
+Release  : 55
 URL      : https://github.com/KDE/kwin/archive/v5.18.5/kwin-5.18.5.tar.gz
 Source0  : https://github.com/KDE/kwin/archive/v5.18.5/kwin-5.18.5.tar.gz
 Summary  : No detailed summary available

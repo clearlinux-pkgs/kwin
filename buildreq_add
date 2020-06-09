@@ -13,6 +13,7 @@ libSM-dev
 libepoxy-dev
 libinput-dev
 libxkbcommon-dev
+kwayland-server-dev
 qtbase-staticdev
 solid-dev
 sonnet-dev

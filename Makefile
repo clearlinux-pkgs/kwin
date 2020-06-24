@@ -1,5 +1,5 @@
 PKG_NAME := kwin
-URL = https://github.com/KDE/kwin/archive/v5.19.1/kwin-5.19.1.tar.gz
+URL = https://download.kde.org/stable/plasma/5.19.2/kwin-5.19.2.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common

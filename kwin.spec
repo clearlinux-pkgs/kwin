@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.19.2
-Release  : 59
-URL      : https://download.kde.org/stable/plasma/5.19.2/kwin-5.19.2.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.19.2/kwin-5.19.2.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.19.2/kwin-5.19.2.tar.xz.sig
+Version  : 5.19.4
+Release  : 60
+URL      : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0
@@ -143,15 +143,15 @@ locales components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.19.2
-cd %{_builddir}/kwin-5.19.2
+%setup -q -n kwin-5.19.4
+cd %{_builddir}/kwin-5.19.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592973848
+export SOURCE_DATE_EPOCH=1597636179
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -167,11 +167,11 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1592973848
+export SOURCE_DATE_EPOCH=1597636179
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
-cp %{_builddir}/kwin-5.19.2/COPYING %{buildroot}/usr/share/package-licenses/kwin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kwin-5.19.2/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/kwin/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/kwin-5.19.4/COPYING %{buildroot}/usr/share/package-licenses/kwin/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kwin-5.19.4/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/kwin/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -253,6 +253,7 @@ popd
 /usr/share/kservices5/kcm_kwin_effects.desktop
 /usr/share/kservices5/kcm_kwin_virtualdesktops.desktop
 /usr/share/kservices5/kcm_kwinrules.desktop
+/usr/share/kservices5/kwin-script-videowall.desktop
 /usr/share/kservices5/kwin/kwin4_decoration_qml_plastik.desktop
 /usr/share/kservices5/kwinactions.desktop
 /usr/share/kservices5/kwinadvanced.desktop
@@ -395,26 +396,20 @@ popd
 /usr/share/doc/HTML/ca/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/ca/kcontrol/kwindecoration/button.png
-/usr/share/doc/HTML/ca/kcontrol/kwindecoration/configure.png
 /usr/share/doc/HTML/ca/kcontrol/kwindecoration/decoration.png
 /usr/share/doc/HTML/ca/kcontrol/kwindecoration/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/kwindecoration/index.docbook
 /usr/share/doc/HTML/ca/kcontrol/kwindecoration/main.png
-/usr/share/doc/HTML/ca/kcontrol/kwineffects/configure-effects.png
-/usr/share/doc/HTML/ca/kcontrol/kwineffects/dialog-information.png
 /usr/share/doc/HTML/ca/kcontrol/kwineffects/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/kwineffects/index.docbook
-/usr/share/doc/HTML/ca/kcontrol/kwineffects/video.png
 /usr/share/doc/HTML/ca/kcontrol/kwinscreenedges/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/kwinscreenedges/index.docbook
 /usr/share/doc/HTML/ca/kcontrol/kwintabbox/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/kwintabbox/index.docbook
 /usr/share/doc/HTML/ca/kcontrol/windowbehaviour/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/windowbehaviour/index.docbook
-/usr/share/doc/HTML/ca/kcontrol/windowspecific/Face-smile.png
 /usr/share/doc/HTML/ca/kcontrol/windowspecific/index.cache.bz2
 /usr/share/doc/HTML/ca/kcontrol/windowspecific/index.docbook
-/usr/share/doc/HTML/ca/kcontrol/windowspecific/pager-4-desktops.png
 /usr/share/doc/HTML/de/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/de/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/de/kcontrol/kwindecoration/index.cache.bz2
@@ -614,17 +609,17 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.19.2
+/usr/lib64/libkcmkwincommon.so.5.19.4
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.19.2
+/usr/lib64/libkwin.so.5.19.4
 /usr/lib64/libkwin4_effect_builtins.so.1
 /usr/lib64/libkwin4_effect_builtins.so.1.0.0
 /usr/lib64/libkwineffects.so.12
-/usr/lib64/libkwineffects.so.5.19.2
+/usr/lib64/libkwineffects.so.5.19.4
 /usr/lib64/libkwinglutils.so.12
-/usr/lib64/libkwinglutils.so.5.19.2
+/usr/lib64/libkwinglutils.so.5.19.4
 /usr/lib64/libkwinxrenderutils.so.12
-/usr/lib64/libkwinxrenderutils.so.5.19.2
+/usr/lib64/libkwinxrenderutils.so.5.19.4
 /usr/lib64/qt5/plugins/kcm_kwin_scripts.so
 /usr/lib64/qt5/plugins/kcm_kwinoptions.so
 /usr/lib64/qt5/plugins/kcm_kwinscreenedges.so

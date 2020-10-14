@@ -5,19 +5,20 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.19.4
-Release  : 60
-URL      : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.19.4/kwin-5.19.4.tar.xz.sig
+Version  : 5.20.0
+Release  : 61
+URL      : https://download.kde.org/stable/plasma/5.20.0/kwin-5.20.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.20.0/kwin-5.20.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.20.0/kwin-5.20.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause GPL-2.0
+License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
 Requires: kwin-bin = %{version}-%{release}
 Requires: kwin-data = %{version}-%{release}
 Requires: kwin-lib = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-locales = %{version}-%{release}
+Requires: kwin-services = %{version}-%{release}
 BuildRequires : attica-dev
 BuildRequires : breeze
 BuildRequires : breeze-dev
@@ -26,6 +27,7 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules pkgconfig(egl)
 BuildRequires : extra-cmake-modules pkgconfig(wayland-client)
 BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
+BuildRequires : extra-cmake-modules qtwayland-dev
 BuildRequires : extra-cmake-modules-data
 BuildRequires : freetype-dev
 BuildRequires : glibc-dev
@@ -49,12 +51,13 @@ BuildRequires : libepoxy-dev
 BuildRequires : libinput-dev
 BuildRequires : libxkbcommon-dev
 BuildRequires : pkg-config
-BuildRequires : pkgconfig(Qt5Gui)
 BuildRequires : pkgconfig(epoxy)
 BuildRequires : pkgconfig(fontconfig)
 BuildRequires : pkgconfig(gbm)
 BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libinput)
+BuildRequires : pkgconfig(libpipewire-0.3)
+BuildRequires : pkgconfig(wayland-protocols)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : plasma-framework-dev
 BuildRequires : qtbase-dev
@@ -82,6 +85,7 @@ Summary: bin components for the kwin package.
 Group: Binaries
 Requires: kwin-data = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
+Requires: kwin-services = %{version}-%{release}
 
 %description bin
 bin components for the kwin package.
@@ -142,16 +146,24 @@ Group: Default
 locales components for the kwin package.
 
 
+%package services
+Summary: services components for the kwin package.
+Group: Systemd services
+
+%description services
+services components for the kwin package.
+
+
 %prep
-%setup -q -n kwin-5.19.4
-cd %{_builddir}/kwin-5.19.4
+%setup -q -n kwin-5.20.0
+cd %{_builddir}/kwin-5.20.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1597636179
+export SOURCE_DATE_EPOCH=1602706350
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -167,11 +179,25 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1597636179
+export SOURCE_DATE_EPOCH=1602706350
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
-cp %{_builddir}/kwin-5.19.4/COPYING %{buildroot}/usr/share/package-licenses/kwin/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kwin-5.19.4/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/kwin/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/kwin-5.20.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/kwin-5.20.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kwin-5.20.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kwin-5.20.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kwin-5.20.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kwin-5.20.0/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kwin-5.20.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kwin-5.20.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kwin-5.20.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kwin/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kwin-5.20.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kwin-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kwin-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kwin-5.20.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kwin-5.20.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kwin-5.20.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kwin/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kwin-5.20.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/kwin/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -308,6 +334,9 @@ popd
 /usr/share/kwin/effects/kwin4_effect_frozenapp/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_frozenapp/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_frozenapp/metadata.json
+/usr/share/kwin/effects/kwin4_effect_fullscreen/contents/code/fullscreen.js
+/usr/share/kwin/effects/kwin4_effect_fullscreen/metadata.desktop
+/usr/share/kwin/effects/kwin4_effect_fullscreen/metadata.json
 /usr/share/kwin/effects/kwin4_effect_login/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_login/contents/config/main.xml
 /usr/share/kwin/effects/kwin4_effect_login/contents/ui/config.ui
@@ -366,7 +395,6 @@ popd
 /usr/share/kwin/scripts/videowall/metadata.json
 /usr/share/kwin/tm_inner.png
 /usr/share/kwin/tm_outer.png
-/usr/share/kwin/virtualkeyboard/main.qml
 /usr/share/qlogging-categories5/org_kde_kwin.categories
 
 %files dev
@@ -485,6 +513,14 @@ popd
 /usr/share/doc/HTML/en/kcontrol/windowspecific/window-matching-tbird-reminder.png
 /usr/share/doc/HTML/es/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/es/kcontrol/desktop/index.docbook
+/usr/share/doc/HTML/fr/kcontrol/desktop/index.cache.bz2
+/usr/share/doc/HTML/fr/kcontrol/desktop/index.docbook
+/usr/share/doc/HTML/fr/kcontrol/kwinscreenedges/index.cache.bz2
+/usr/share/doc/HTML/fr/kcontrol/kwinscreenedges/index.docbook
+/usr/share/doc/HTML/fr/kcontrol/kwintabbox/index.cache.bz2
+/usr/share/doc/HTML/fr/kcontrol/kwintabbox/index.docbook
+/usr/share/doc/HTML/fr/kcontrol/windowspecific/index.cache.bz2
+/usr/share/doc/HTML/fr/kcontrol/windowspecific/index.docbook
 /usr/share/doc/HTML/id/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/id/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/id/kcontrol/kwindecoration/index.cache.bz2
@@ -574,20 +610,6 @@ popd
 /usr/share/doc/HTML/sr/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/sr@latin/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/sr@latin/kcontrol/desktop/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/desktop/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/desktop/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/kwindecoration/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/kwindecoration/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/kwineffects/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/kwineffects/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/kwinscreenedges/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/kwinscreenedges/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/kwintabbox/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/kwintabbox/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/windowbehaviour/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/windowbehaviour/index.docbook
-/usr/share/doc/HTML/sv/kcontrol/windowspecific/index.cache.bz2
-/usr/share/doc/HTML/sv/kcontrol/windowspecific/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/uk/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/kwindecoration/button.png
@@ -609,17 +631,17 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.19.4
+/usr/lib64/libkcmkwincommon.so.5.20.0
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.19.4
+/usr/lib64/libkwin.so.5.20.0
 /usr/lib64/libkwin4_effect_builtins.so.1
 /usr/lib64/libkwin4_effect_builtins.so.1.0.0
 /usr/lib64/libkwineffects.so.12
-/usr/lib64/libkwineffects.so.5.19.4
+/usr/lib64/libkwineffects.so.5.20.0
 /usr/lib64/libkwinglutils.so.12
-/usr/lib64/libkwinglutils.so.5.19.4
+/usr/lib64/libkwinglutils.so.5.20.0
 /usr/lib64/libkwinxrenderutils.so.12
-/usr/lib64/libkwinxrenderutils.so.5.19.4
+/usr/lib64/libkwinxrenderutils.so.5.20.0
 /usr/lib64/qt5/plugins/kcm_kwin_scripts.so
 /usr/lib64/qt5/plugins/kcm_kwinoptions.so
 /usr/lib64/qt5/plugins/kcm_kwinscreenedges.so
@@ -629,8 +651,8 @@ popd
 /usr/lib64/qt5/plugins/kcms/kcm_kwin_virtualdesktops.so
 /usr/lib64/qt5/plugins/kcms/kcm_kwindecoration.so
 /usr/lib64/qt5/plugins/kcms/kcm_kwinrules.so
+/usr/lib64/qt5/plugins/kf5/kwindowsystem/KF5WindowSystemKWinPrivatePlugin.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeKWinWaylandPrivatePlugin.so
-/usr/lib64/qt5/plugins/kf5/org.kde.kwindowsystem.platforms/KF5WindowSystemKWinPrivatePlugin.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_aurorae.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_decoration.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_effect.so
@@ -688,8 +710,23 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kwin/7c203dee3a03037da436df03c4b25b659c073976
+/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/kwin/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/kwin/3c3d7573e137d48253731c975ecf90d74cfa9efe
+/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+/usr/share/package-licenses/kwin/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+/usr/share/package-licenses/kwin/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
+/usr/share/package-licenses/kwin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 /usr/share/package-licenses/kwin/ff3ed70db4739b3c6747c7f624fe2bad70802987
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/user/plasma-kwin_wayland.service
+/usr/lib/systemd/user/plasma-kwin_x11.service
 
 %files locales -f kcm_kwindecoration.lang -f kcm_kwinrules.lang -f kcmkwm.lang -f kwin.lang -f kwin_clients.lang -f kcm-kwin-scripts.lang -f kcm_kwin_virtualdesktops.lang -f kcm_kwintabbox.lang -f kcmkwincompositing.lang -f kcmkwinscreenedges.lang -f kwin_effects.lang -f kwin_scripting.lang -f kcm_kwin_effects.lang -f kcmkwincommon.lang -f kwin_scripts.lang
 %defattr(-,root,root,-)

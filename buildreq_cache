@@ -1,6 +1,2 @@
-5.19.4
-kglobalaccel-dev
-kidletime-dev
-kwayland-dev
-libcap-dev
-plasma-framework-dev
+5.20.0
+pkgconfig(wayland-protocols)

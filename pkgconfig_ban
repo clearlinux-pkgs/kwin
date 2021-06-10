@@ -4,3 +4,4 @@ android-headers
 hwcomposer-egl
 hybris-egl-platform
 libhardware
+xwayland

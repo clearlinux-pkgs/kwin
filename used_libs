@@ -12,7 +12,6 @@ libKF5GlobalAccelPrivate.so.5
 libKF5I18n.so.5
 libKF5IdleTime.so.5
 libKF5KCMUtils.so.5
-libKF5KIOWidgets.so.5
 libKF5NewStuff.so.5
 libKF5NewStuffCore.so.5
 libKF5Notifications.so.5
@@ -45,12 +44,13 @@ libfreetype.so.6
 libgbm.so.1
 libinput.so.10
 libkdecorations2.so.5
-libkdecorations2private.so.8
+libkdecorations2private.so.9
 liblcms2.so.2
 libm.so.6
 libpipewire-0.3.so.0
 libstdc++.so.6
 libudev.so.1
 libwayland-egl.so.1
+libwayland-server.so.0
 libxcb-cursor.so.0
 libxkbcommon.so.0

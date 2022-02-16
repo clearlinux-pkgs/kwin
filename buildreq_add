@@ -32,3 +32,6 @@ xcb-util-keysyms-dev
 xcb-util-renderutil-dev
 xcb-util-wm-dev
 xcb-util-xrm-dev
+xwayland
+clr-hardware-files
+pcitutils-dev

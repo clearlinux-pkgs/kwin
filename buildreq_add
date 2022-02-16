@@ -34,4 +34,4 @@ xcb-util-wm-dev
 xcb-util-xrm-dev
 xwayland
 clr-hardware-files
-pcitutils-dev
+pciutils-dev

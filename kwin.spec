@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.24.1
-Release  : 81
+Release  : 82
 URL      : https://download.kde.org/stable/plasma/5.24.1/kwin-5.24.1.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.24.1/kwin-5.24.1.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.24.1/kwin-5.24.1.tar.xz.sig
@@ -24,6 +24,7 @@ BuildRequires : breeze
 BuildRequires : breeze-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : clr-hardware-files
 BuildRequires : extra-cmake-modules pkgconfig(egl)
 BuildRequires : extra-cmake-modules pkgconfig(wayland-client)
 BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
@@ -51,6 +52,7 @@ BuildRequires : libcap-dev
 BuildRequires : libepoxy-dev
 BuildRequires : libinput-dev
 BuildRequires : libxkbcommon-dev
+BuildRequires : pciutils-dev
 BuildRequires : pkg-config
 BuildRequires : pkgconfig(gbm)
 BuildRequires : pkgconfig(lcms2)
@@ -73,6 +75,7 @@ BuildRequires : xcb-util-keysyms-dev
 BuildRequires : xcb-util-renderutil-dev
 BuildRequires : xcb-util-wm-dev
 BuildRequires : xcb-util-xrm-dev
+BuildRequires : xwayland
 
 %description
 Aurorae is a themeable window decoration for KWin.
@@ -162,7 +165,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1645030745
+export SOURCE_DATE_EPOCH=1645031745
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -178,7 +181,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1645030745
+export SOURCE_DATE_EPOCH=1645031745
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-5.24.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e

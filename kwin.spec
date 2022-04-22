@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.24.4
-Release  : 85
+Release  : 86
 URL      : https://download.kde.org/stable/plasma/5.24.4/kwin-5.24.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.24.4/kwin-5.24.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.24.4/kwin-5.24.4.tar.xz.sig
@@ -15,7 +15,9 @@ Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
 Requires: kwin-bin = %{version}-%{release}
 Requires: kwin-data = %{version}-%{release}
+Requires: kwin-filemap = %{version}-%{release}
 Requires: kwin-lib = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-locales = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
@@ -86,8 +88,10 @@ installed and selected directly in the configuration module of KWin decorations.
 Summary: bin components for the kwin package.
 Group: Binaries
 Requires: kwin-data = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
+Requires: kwin-filemap = %{version}-%{release}
 
 %description bin
 bin components for the kwin package.
@@ -122,14 +126,34 @@ Group: Documentation
 doc components for the kwin package.
 
 
+%package filemap
+Summary: filemap components for the kwin package.
+Group: Default
+
+%description filemap
+filemap components for the kwin package.
+
+
 %package lib
 Summary: lib components for the kwin package.
 Group: Libraries
 Requires: kwin-data = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
+Requires: kwin-filemap = %{version}-%{release}
 
 %description lib
 lib components for the kwin package.
+
+
+%package libexec
+Summary: libexec components for the kwin package.
+Group: Default
+Requires: kwin-license = %{version}-%{release}
+Requires: kwin-filemap = %{version}-%{release}
+
+%description libexec
+libexec components for the kwin package.
 
 
 %package license
@@ -165,7 +189,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1648658925
+export SOURCE_DATE_EPOCH=1650663092
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -179,9 +203,26 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+%cmake ..
+make  %{?_smp_mflags}
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1648658925
+export SOURCE_DATE_EPOCH=1650663092
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-5.24.4/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
@@ -199,6 +240,9 @@ cp %{_builddir}/kwin-5.24.4/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot
 cp %{_builddir}/kwin-5.24.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
 cp %{_builddir}/kwin-5.24.4/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
 cp %{_builddir}/kwin-5.24.4/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kwin/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
@@ -218,6 +262,7 @@ popd
 %find_lang kwin_effects
 %find_lang kwin_scripting
 %find_lang kwin_scripts
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -231,6 +276,7 @@ popd
 /usr/bin/kwin_wayland
 /usr/bin/kwin_wayland_wrapper
 /usr/bin/kwin_x11
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -729,6 +775,10 @@ popd
 /usr/share/doc/HTML/uk/kcontrol/windowspecific/index.cache.bz2
 /usr/share/doc/HTML/uk/kcontrol/windowspecific/index.docbook
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-kwin
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libkcmkwincommon.so.5
@@ -798,6 +848,11 @@ popd
 /usr/lib64/qt5/qml/org/kde/kwin/decorations/plastik/qmldir
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/qmldir
+/usr/share/clear/optimized-elf/lib*
+
+%files libexec
+%defattr(-,root,root,-)
+/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)

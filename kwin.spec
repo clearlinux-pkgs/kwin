@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.25.0
-Release  : 88
+Release  : 89
 URL      : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz.sig

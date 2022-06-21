@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.25.0
-Release  : 89
-URL      : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.25.0/kwin-5.25.0.tar.xz.sig
+Version  : 5.25.1
+Release  : 90
+URL      : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -17,7 +17,6 @@ Requires: kwin-bin = %{version}-%{release}
 Requires: kwin-data = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
 Requires: kwin-lib = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-locales = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
@@ -92,7 +91,6 @@ installed and selected directly in the configuration module of KWin decorations.
 Summary: bin components for the kwin package.
 Group: Binaries
 Requires: kwin-data = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
@@ -142,22 +140,11 @@ filemap components for the kwin package.
 Summary: lib components for the kwin package.
 Group: Libraries
 Requires: kwin-data = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
 
 %description lib
 lib components for the kwin package.
-
-
-%package libexec
-Summary: libexec components for the kwin package.
-Group: Default
-Requires: kwin-license = %{version}-%{release}
-Requires: kwin-filemap = %{version}-%{release}
-
-%description libexec
-libexec components for the kwin package.
 
 
 %package license
@@ -185,15 +172,15 @@ services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.25.0
-cd %{_builddir}/kwin-5.25.0
+%setup -q -n kwin-5.25.1
+cd %{_builddir}/kwin-5.25.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655414493
+export SOURCE_DATE_EPOCH=1655831198
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -226,24 +213,24 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1655414493
+export SOURCE_DATE_EPOCH=1655831198
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
-cp %{_builddir}/kwin-5.25.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
-cp %{_builddir}/kwin-5.25.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/kwin-5.25.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/kwin-5.25.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kwin-5.25.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kwin-5.25.0/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/kwin-5.25.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kwin-5.25.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kwin-5.25.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kwin/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/kwin-5.25.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/kwin-5.25.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kwin-5.25.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kwin-5.25.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kwin-5.25.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/kwin-5.25.0/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kwin/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
+cp %{_builddir}/kwin-5.25.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
+cp %{_builddir}/kwin-5.25.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kwin-5.25.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/kwin-5.25.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kwin-5.25.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kwin-5.25.1/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/kwin-5.25.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kwin-5.25.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kwin/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kwin-5.25.1/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/kwin/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/kwin-5.25.1/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kwin/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/kwin-5.25.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kwin-5.25.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kwin/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kwin-5.25.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kwin-5.25.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/kwin/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/kwin-5.25.1/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/kwin/a0193e3fccf86c17dc71e3f6c0ac0b535e06bea3
 pushd clr-build-avx2
 %make_install_v3  || :
 popd
@@ -266,10 +253,11 @@ popd
 %find_lang kwin_effects
 %find_lang kwin_scripting
 %find_lang kwin_scripts
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin5_update_default_rules
 /usr/lib64/kconf_update_bin/kwin5_update_default_rules
 /usr/lib64/libexec/kwin-applywindowdecoration
 /usr/lib64/libexec/kwin_killer_helper
@@ -833,16 +821,78 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandDrmBackend.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandVirtualBackend.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandWaylandBackend.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandX11Backend.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/KWinX11Platform.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/colordintegration.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin4_genericscripted.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_effects.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_scripts.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_virtualdesktops.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwindecoration.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinoptions.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinrules.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinscreenedges.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwintabbox.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwintouchscreen.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_virtualkeyboard.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/krunnerintegration.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin5_aurorae.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_aurorae.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_blur_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_decoration.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_desktopgrid_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_diminactive_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_effect.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_glide_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_invert_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_lookingglass_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_magiclamp_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_magnifier_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_mouseclick_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_mousemark_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_overview_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_script.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_showfps_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_showpaint_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_slide_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_thumbnailaside_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_trackmouse_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_windowswitcher.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_windowview_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_wobblywindows_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_zoom_config.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/kwincompositing.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libKWinNightColorPlugin.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libdecorationplugin.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libeffectsplugin.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.25.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkdecorationprivatedeclarative.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.25.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.13
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.25.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.13
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.25.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so.13
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so.5.25.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libplastikplugin.so
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.25.0
+/usr/lib64/libkcmkwincommon.so.5.25.1
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.25.0
+/usr/lib64/libkwin.so.5.25.1
 /usr/lib64/libkwineffects.so.13
-/usr/lib64/libkwineffects.so.5.25.0
+/usr/lib64/libkwineffects.so.5.25.1
 /usr/lib64/libkwinglutils.so.13
-/usr/lib64/libkwinglutils.so.5.25.0
+/usr/lib64/libkwinglutils.so.5.25.1
 /usr/lib64/libkwinxrenderutils.so.13
-/usr/lib64/libkwinxrenderutils.so.5.25.0
+/usr/lib64/libkwinxrenderutils.so.5.25.1
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so
@@ -904,11 +954,6 @@ popd
 /usr/lib64/qt5/qml/org/kde/kwin/private/effects/qmldir
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/qmldir
-/usr/share/clear/optimized-elf/lib*
-
-%files libexec
-%defattr(-,root,root,-)
-/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)

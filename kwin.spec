@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.25.1
-Release  : 90
+Release  : 91
 URL      : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.25.1/kwin-5.25.1.tar.xz.sig
@@ -180,7 +180,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655831198
+export SOURCE_DATE_EPOCH=1656128477
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -213,7 +213,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1655831198
+export SOURCE_DATE_EPOCH=1656128477
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-5.25.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
@@ -257,7 +257,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin5_update_default_rules
 /usr/lib64/kconf_update_bin/kwin5_update_default_rules
 /usr/lib64/libexec/kwin-applywindowdecoration
 /usr/lib64/libexec/kwin_killer_helper
@@ -821,56 +820,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandDrmBackend.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandVirtualBackend.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandWaylandBackend.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/KWinWaylandX11Backend.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/KWinX11Platform.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/colordintegration.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin4_genericscripted.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_effects.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_scripts.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwin_virtualdesktops.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwindecoration.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinoptions.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinrules.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwinscreenedges.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwintabbox.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_kwintouchscreen.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kcm_virtualkeyboard.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/krunnerintegration.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin5_aurorae.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_aurorae.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_blur_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_decoration.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_desktopgrid_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_diminactive_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_effect.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_glide_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_invert_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_lookingglass_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_magiclamp_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_magnifier_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_mouseclick_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_mousemark_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_overview_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_script.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_showfps_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_showpaint_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_slide_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_thumbnailaside_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_trackmouse_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_windowswitcher.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_windowview_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_wobblywindows_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwin_zoom_config.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/kwincompositing.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libKWinNightColorPlugin.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libdecorationplugin.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libeffectsplugin.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.25.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkdecorationprivatedeclarative.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.25.1
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so
@@ -882,7 +833,6 @@ popd
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so.13
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwinxrenderutils.so.5.25.1
-/usr/lib64/glibc-hwcaps/x86-64-v3/libplastikplugin.so
 /usr/lib64/libkcmkwincommon.so.5
 /usr/lib64/libkcmkwincommon.so.5.25.1
 /usr/lib64/libkwin.so.5

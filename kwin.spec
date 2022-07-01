@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.25.2
-Release  : 92
+Release  : 93
 URL      : https://download.kde.org/stable/plasma/5.25.2/kwin-5.25.2.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.25.2/kwin-5.25.2.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.25.2/kwin-5.25.2.tar.xz.sig
@@ -17,6 +17,7 @@ Requires: kwin-bin = %{version}-%{release}
 Requires: kwin-data = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
 Requires: kwin-lib = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-locales = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
@@ -91,6 +92,7 @@ installed and selected directly in the configuration module of KWin decorations.
 Summary: bin components for the kwin package.
 Group: Binaries
 Requires: kwin-data = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
@@ -140,11 +142,22 @@ filemap components for the kwin package.
 Summary: lib components for the kwin package.
 Group: Libraries
 Requires: kwin-data = %{version}-%{release}
+Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-filemap = %{version}-%{release}
 
 %description lib
 lib components for the kwin package.
+
+
+%package libexec
+Summary: libexec components for the kwin package.
+Group: Default
+Requires: kwin-license = %{version}-%{release}
+Requires: kwin-filemap = %{version}-%{release}
+
+%description libexec
+libexec components for the kwin package.
 
 
 %package license
@@ -180,7 +193,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656447029
+export SOURCE_DATE_EPOCH=1656716188
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -213,7 +226,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1656447029
+export SOURCE_DATE_EPOCH=1656716188
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-5.25.2/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/680ed9349d3d12bd39ddd36e8c4bc6b1b0cb1c0e
@@ -905,6 +918,11 @@ popd
 /usr/lib64/qt5/qml/org/kde/kwin/private/effects/qmldir
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/qmldir
+/usr/share/clear/optimized-elf/other*
+
+%files libexec
+%defattr(-,root,root,-)
+/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)

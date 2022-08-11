@@ -6,7 +6,7 @@
 #
 Name     : kwin
 Version  : 5.25.4
-Release  : 95
+Release  : 96
 URL      : https://download.kde.org/stable/plasma/5.25.4/kwin-5.25.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.25.4/kwin-5.25.4.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.25.4/kwin-5.25.4.tar.xz.sig

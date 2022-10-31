@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.26.1
-Release  : 102
-URL      : https://download.kde.org/stable/plasma/5.26.1/kwin-5.26.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.1/kwin-5.26.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.1/kwin-5.26.1.tar.xz.sig
+Version  : 5.26.2.1
+Release  : 103
+URL      : https://download.kde.org/stable/plasma/5.26.2/kwin-5.26.2.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.2/kwin-5.26.2.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.2/kwin-5.26.2.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -184,15 +184,15 @@ services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.26.1
-cd %{_builddir}/kwin-5.26.1
+%setup -q -n kwin-5.26.2.1
+cd %{_builddir}/kwin-5.26.2.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666283621
+export SOURCE_DATE_EPOCH=1667244413
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -212,10 +212,10 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
@@ -225,7 +225,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1666283621
+export SOURCE_DATE_EPOCH=1667244413
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -823,21 +823,21 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.26.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.26.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.26.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.26.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.26.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.26.2
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.26.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.26.2
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.26.1
+/usr/lib64/libkcmkwincommon.so.5.26.2
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.26.1
+/usr/lib64/libkwin.so.5.26.2
 /usr/lib64/libkwineffects.so.14
-/usr/lib64/libkwineffects.so.5.26.1
+/usr/lib64/libkwineffects.so.5.26.2
 /usr/lib64/libkwinglutils.so.14
-/usr/lib64/libkwinglutils.so.5.26.1
+/usr/lib64/libkwinglutils.so.5.26.2
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so

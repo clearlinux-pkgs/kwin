@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.26.5
-Release  : 109
-URL      : https://download.kde.org/stable/plasma/5.26.5/kwin-5.26.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.5/kwin-5.26.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.5/kwin-5.26.5.tar.xz.sig
+Version  : 5.27.0
+Release  : 110
+URL      : https://download.kde.org/stable/plasma/5.27.0/kwin-5.27.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.0/kwin-5.27.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.0/kwin-5.27.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -63,6 +63,7 @@ BuildRequires : pkgconfig(libpipewire-0.3)
 BuildRequires : pkgconfig(libxcvt)
 BuildRequires : pkgconfig(wayland-protocols)
 BuildRequires : pkgconfig(xkbcommon)
+BuildRequires : pkgconfig(xkbcommon-x11)
 BuildRequires : plasma-framework-dev
 BuildRequires : plasma-wayland-protocols-dev
 BuildRequires : qt6base-dev
@@ -184,15 +185,15 @@ services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.26.5
-cd %{_builddir}/kwin-5.26.5
+%setup -q -n kwin-5.27.0
+cd %{_builddir}/kwin-5.27.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1673306845
+export SOURCE_DATE_EPOCH=1676676363
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -225,7 +226,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1673306845
+export SOURCE_DATE_EPOCH=1676676363
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -259,6 +260,7 @@ popd
 %find_lang kcm_kwin_scripts
 %find_lang kcm_kwin_virtualdesktops
 %find_lang kcm_kwintabbox
+%find_lang kcm_kwinxwayland
 %find_lang kcm_virtualkeyboard
 %find_lang kcmkwincommon
 %find_lang kcmkwincompositing
@@ -291,12 +293,13 @@ popd
 /usr/share/applications/kcm_kwinoptions.desktop
 /usr/share/applications/kcm_kwinrules.desktop
 /usr/share/applications/kcm_kwintabbox.desktop
+/usr/share/applications/kcm_kwinxwayland.desktop
 /usr/share/applications/kcm_virtualkeyboard.desktop
 /usr/share/applications/kwincompositing.desktop
 /usr/share/applications/org.kde.kwin_rules_dialog.desktop
 /usr/share/config.kcfg/kwin.kcfg
-/usr/share/config.kcfg/kwin_colorcorrect.kcfg
 /usr/share/config.kcfg/kwindecorationsettings.kcfg
+/usr/share/config.kcfg/nightcolorsettings.kcfg
 /usr/share/config.kcfg/virtualdesktopssettings.kcfg
 /usr/share/dbus-1/interfaces/org.kde.KWin.Plugins.xml
 /usr/share/dbus-1/interfaces/org.kde.KWin.TabletModeManager.xml
@@ -321,6 +324,7 @@ popd
 /usr/share/kconf_update/kwin-5.23-remove-flip-switch.py
 /usr/share/kconf_update/kwin-5.23-remove-xrender-backend.py
 /usr/share/kconf_update/kwin-5.25-effect-pluginid-config-group.py
+/usr/share/kconf_update/kwin-5.27-replace-cascaded-zerocornered.sh
 /usr/share/kconf_update/kwin.upd
 /usr/share/kconf_update/kwinrules-5.19-placement.pl
 /usr/share/kconf_update/kwinrules-5.23-virtual-desktop-ids.py
@@ -346,9 +350,9 @@ popd
 /usr/share/kpackage/kcms/kcm_kwinrules/contents/ui/RulesEditor.qml
 /usr/share/kpackage/kcms/kcm_kwinrules/contents/ui/ValueEditor.qml
 /usr/share/kpackage/kcms/kcm_kwinrules/contents/ui/main.qml
+/usr/share/kpackage/kcms/kcm_kwinxwayland/contents/ui/main.qml
 /usr/share/kpackage/kcms/kcm_virtualkeyboard/contents/ui/main.qml
 /usr/share/krunner/dbusplugins/kwin-runner-windows.desktop
-/usr/share/kservices5/kwin/kwin4_decoration_qml_plastik.desktop
 /usr/share/kservicetypes5/kwindecoration.desktop
 /usr/share/kservicetypes5/kwindesktopswitcher.desktop
 /usr/share/kservicetypes5/kwineffect.desktop
@@ -391,6 +395,7 @@ popd
 /usr/share/kwin/builtin-effects/kwin4_effect_snaphelper/metadata.json
 /usr/share/kwin/builtin-effects/kwin4_effect_startupfeedback/metadata.json
 /usr/share/kwin/builtin-effects/kwin4_effect_thumbnailaside/metadata.json
+/usr/share/kwin/builtin-effects/kwin4_effect_tileseditor/metadata.json
 /usr/share/kwin/builtin-effects/kwin4_effect_touchpoints/metadata.json
 /usr/share/kwin/builtin-effects/kwin4_effect_trackmouse/metadata.json
 /usr/share/kwin/builtin-effects/kwin4_effect_windowview/metadata.json
@@ -400,72 +405,60 @@ popd
 /usr/share/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/PlastikButton.qml
 /usr/share/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/config.ui
 /usr/share/kwin/decorations/kwin4_decoration_qml_plastik/contents/ui/main.qml
-/usr/share/kwin/decorations/kwin4_decoration_qml_plastik/metadata.desktop
+/usr/share/kwin/decorations/kwin4_decoration_qml_plastik/metadata.json
 /usr/share/kwin/effects/desktopgrid/qml/DesktopView.qml
 /usr/share/kwin/effects/desktopgrid/qml/main.qml
 /usr/share/kwin/effects/kwin4_effect_dialogparent/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_dialogparent/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_dialogparent/metadata.json
 /usr/share/kwin/effects/kwin4_effect_dimscreen/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_dimscreen/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_dimscreen/metadata.json
 /usr/share/kwin/effects/kwin4_effect_eyeonscreen/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_eyeonscreen/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_eyeonscreen/metadata.json
 /usr/share/kwin/effects/kwin4_effect_fade/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_fade/contents/config/main.xml
-/usr/share/kwin/effects/kwin4_effect_fade/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_fade/metadata.json
 /usr/share/kwin/effects/kwin4_effect_fadedesktop/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_fadedesktop/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_fadedesktop/metadata.json
 /usr/share/kwin/effects/kwin4_effect_fadingpopups/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_fadingpopups/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_fadingpopups/metadata.json
 /usr/share/kwin/effects/kwin4_effect_frozenapp/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_frozenapp/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_frozenapp/metadata.json
 /usr/share/kwin/effects/kwin4_effect_fullscreen/contents/code/fullscreen.js
-/usr/share/kwin/effects/kwin4_effect_fullscreen/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_fullscreen/metadata.json
 /usr/share/kwin/effects/kwin4_effect_login/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_login/contents/config/main.xml
 /usr/share/kwin/effects/kwin4_effect_login/contents/ui/config.ui
-/usr/share/kwin/effects/kwin4_effect_login/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_login/metadata.json
 /usr/share/kwin/effects/kwin4_effect_logout/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_logout/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_logout/metadata.json
 /usr/share/kwin/effects/kwin4_effect_maximize/contents/code/maximize.js
-/usr/share/kwin/effects/kwin4_effect_maximize/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_maximize/metadata.json
 /usr/share/kwin/effects/kwin4_effect_morphingpopups/contents/code/morphingpopups.js
-/usr/share/kwin/effects/kwin4_effect_morphingpopups/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_morphingpopups/metadata.json
 /usr/share/kwin/effects/kwin4_effect_scale/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_scale/contents/config/main.xml
 /usr/share/kwin/effects/kwin4_effect_scale/contents/ui/config.ui
-/usr/share/kwin/effects/kwin4_effect_scale/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_scale/metadata.json
 /usr/share/kwin/effects/kwin4_effect_sessionquit/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_sessionquit/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_sessionquit/metadata.json
 /usr/share/kwin/effects/kwin4_effect_squash/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_squash/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_squash/metadata.json
 /usr/share/kwin/effects/kwin4_effect_translucency/contents/code/main.js
 /usr/share/kwin/effects/kwin4_effect_translucency/contents/config/main.xml
 /usr/share/kwin/effects/kwin4_effect_translucency/contents/ui/config.ui
-/usr/share/kwin/effects/kwin4_effect_translucency/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_translucency/metadata.json
 /usr/share/kwin/effects/kwin4_effect_windowaperture/contents/code/main.js
-/usr/share/kwin/effects/kwin4_effect_windowaperture/metadata.desktop
 /usr/share/kwin/effects/kwin4_effect_windowaperture/metadata.json
 /usr/share/kwin/effects/outputlocator/qml/OutputLabel.qml
 /usr/share/kwin/effects/overview/qml/DesktopBar.qml
 /usr/share/kwin/effects/overview/qml/DesktopView.qml
 /usr/share/kwin/effects/overview/qml/ScreenView.qml
 /usr/share/kwin/effects/showfps/qml/main.qml
+/usr/share/kwin/effects/tileseditor/qml/ResizeCorner.qml
+/usr/share/kwin/effects/tileseditor/qml/ResizeHandle.qml
+/usr/share/kwin/effects/tileseditor/qml/TileDelegate.qml
+/usr/share/kwin/effects/tileseditor/qml/layouts.svg
+/usr/share/kwin/effects/tileseditor/qml/main.qml
 /usr/share/kwin/effects/windowview/qml/main.qml
 /usr/share/kwin/frames/plasma/frame_none.qml
 /usr/share/kwin/frames/plasma/frame_styled.qml
@@ -480,18 +473,14 @@ popd
 /usr/share/kwin/outline/plasma/outline.qml
 /usr/share/kwin/scripts/desktopchangeosd/contents/ui/main.qml
 /usr/share/kwin/scripts/desktopchangeosd/contents/ui/osd.qml
-/usr/share/kwin/scripts/desktopchangeosd/metadata.desktop
 /usr/share/kwin/scripts/desktopchangeosd/metadata.json
 /usr/share/kwin/scripts/minimizeall/contents/code/main.js
-/usr/share/kwin/scripts/minimizeall/metadata.desktop
 /usr/share/kwin/scripts/minimizeall/metadata.json
 /usr/share/kwin/scripts/synchronizeskipswitcher/contents/code/main.js
-/usr/share/kwin/scripts/synchronizeskipswitcher/metadata.desktop
 /usr/share/kwin/scripts/synchronizeskipswitcher/metadata.json
 /usr/share/kwin/scripts/videowall/contents/code/main.js
 /usr/share/kwin/scripts/videowall/contents/config/main.xml
 /usr/share/kwin/scripts/videowall/contents/ui/config.ui
-/usr/share/kwin/scripts/videowall/metadata.desktop
 /usr/share/kwin/scripts/videowall/metadata.json
 /usr/share/kwin/tm_inner.png
 /usr/share/kwin/tm_outer.png
@@ -581,6 +570,7 @@ popd
 /usr/share/doc/HTML/en/kcontrol/kwinscreenedges/index.docbook
 /usr/share/doc/HTML/en/kcontrol/kwintabbox/index.cache.bz2
 /usr/share/doc/HTML/en/kcontrol/kwintabbox/index.docbook
+/usr/share/doc/HTML/en/kcontrol/kwintabbox/taskswitcher.png
 /usr/share/doc/HTML/en/kcontrol/kwintouchscreen/index.cache.bz2
 /usr/share/doc/HTML/en/kcontrol/kwintouchscreen/index.docbook
 /usr/share/doc/HTML/en/kcontrol/kwinvirtualkeyboard/index.cache.bz2
@@ -631,6 +621,8 @@ popd
 /usr/share/doc/HTML/es/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/fr/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/fr/kcontrol/desktop/index.docbook
+/usr/share/doc/HTML/fr/kcontrol/kwindecoration/index.cache.bz2
+/usr/share/doc/HTML/fr/kcontrol/kwindecoration/index.docbook
 /usr/share/doc/HTML/fr/kcontrol/kwinscreenedges/index.cache.bz2
 /usr/share/doc/HTML/fr/kcontrol/kwinscreenedges/index.docbook
 /usr/share/doc/HTML/fr/kcontrol/kwintabbox/index.cache.bz2
@@ -823,21 +815,21 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.26.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.27.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.26.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.27.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.26.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.27.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.26.5
+/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.27.0
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.26.5
+/usr/lib64/libkcmkwincommon.so.5.27.0
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.26.5
+/usr/lib64/libkwin.so.5.27.0
 /usr/lib64/libkwineffects.so.14
-/usr/lib64/libkwineffects.so.5.26.5
+/usr/lib64/libkwineffects.so.5.27.0
 /usr/lib64/libkwinglutils.so.14
-/usr/lib64/libkwinglutils.so.5.26.5
+/usr/lib64/libkwinglutils.so.5.27.0
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so
@@ -857,6 +849,7 @@ popd
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_showpaint_config.so
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_thumbnailaside_config.so
+/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_tileseditor_config.so
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_trackmouse_config.so
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_windowview_config.so
 /usr/lib64/qt5/plugins/kwin/effects/configs/kwin_wobblywindows_config.so
@@ -871,6 +864,7 @@ popd
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_virtualdesktops.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwindecoration.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinrules.so
+/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinxwayland.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_virtualkeyboard.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinoptions.so
 /usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinscreenedges.so
@@ -920,6 +914,6 @@ popd
 /usr/lib/systemd/user/plasma-kwin_wayland.service
 /usr/lib/systemd/user/plasma-kwin_x11.service
 
-%files locales -f kcm_kwindecoration.lang -f kcm_kwinrules.lang -f kcmkwm.lang -f kwin.lang -f kwin_clients.lang -f kcm_kwin_effects.lang -f kcm_kwin_scripts.lang -f kcm_kwin_virtualdesktops.lang -f kcm_kwintabbox.lang -f kcm_virtualkeyboard.lang -f kcmkwincommon.lang -f kcmkwincompositing.lang -f kcmkwinscreenedges.lang -f kwin_effects.lang -f kwin_scripting.lang -f kwin_scripts.lang
+%files locales -f kcm_kwindecoration.lang -f kcm_kwinrules.lang -f kcmkwm.lang -f kwin.lang -f kwin_clients.lang -f kcm_kwin_effects.lang -f kcm_kwin_scripts.lang -f kcm_kwin_virtualdesktops.lang -f kcm_kwintabbox.lang -f kcm_kwinxwayland.lang -f kcm_virtualkeyboard.lang -f kcmkwincommon.lang -f kcmkwincompositing.lang -f kcmkwinscreenedges.lang -f kwin_effects.lang -f kwin_scripting.lang -f kwin_scripts.lang
 %defattr(-,root,root,-)
 

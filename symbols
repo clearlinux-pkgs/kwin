@@ -5567,6 +5567,7 @@ libkwin.so.5:_ZNK4KWin4Tile14windowGeometryEv
 libkwin.so.5:_ZNK4KWin4Tile15previousSiblingEv
 libkwin.so.5:_ZNK4KWin4Tile16absoluteGeometryEv
 libkwin.so.5:_ZNK4KWin4Tile16relativeGeometryEv
+libkwin.so.5:_ZNK4KWin4Tile16visitDescendantsESt8functionIFvPKS0_EE
 libkwin.so.5:_ZNK4KWin4Tile23maximizedWindowGeometryEv
 libkwin.so.5:_ZNK4KWin4Tile24absoluteGeometryInScreenEv
 libkwin.so.5:_ZNK4KWin4Tile3rowEv
@@ -6657,9 +6658,11 @@ libkwinglutils.so.14:_ZNK4KWin10GLPlatform10isPanfrostEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform11glslVersionEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform11mesaVersionEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform12isMesaDriverEv
+libkwinglutils.so.14:_ZNK4KWin10GLPlatform12isVideoCore4Ev
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform12isVirtualBoxEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform12printResultsEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform13driverVersionEv
+libkwinglutils.so.14:_ZNK4KWin10GLPlatform13isVideoCore3DEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform13kernelVersionEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform13serverVersionEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform14galliumVersionEv
@@ -6676,6 +6679,7 @@ libkwinglutils.so.14:_ZNK4KWin10GLPlatform21recommendedCompositorEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform30glShadingLanguageVersionStringEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform6driverEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform6isGLESEv
+libkwinglutils.so.14:_ZNK4KWin10GLPlatform6isLimaEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform7isIntelEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform7isVirglEv
 libkwinglutils.so.14:_ZNK4KWin10GLPlatform8isAdrenoEv

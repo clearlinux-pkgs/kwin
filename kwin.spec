@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.27.4
-Release  : 115
-URL      : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.tar.xz.sig
+Version  : 5.27.4.1
+Release  : 116
+URL      : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -180,21 +180,22 @@ locales components for the kwin package.
 %package services
 Summary: services components for the kwin package.
 Group: Systemd services
+Requires: systemd
 
 %description services
 services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.27.4
-cd %{_builddir}/kwin-5.27.4
+%setup -q -n kwin-5.27.4.1
+cd %{_builddir}/kwin-5.27.4.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680717493
+export SOURCE_DATE_EPOCH=1681743490
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -227,7 +228,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680717493
+export SOURCE_DATE_EPOCH=1681743490
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -787,6 +788,22 @@ popd
 /usr/share/doc/HTML/sv/kcontrol/windowbehaviour/index.docbook
 /usr/share/doc/HTML/sv/kcontrol/windowspecific/index.cache.bz2
 /usr/share/doc/HTML/sv/kcontrol/windowspecific/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/desktop/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/desktop/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwindecoration/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwindecoration/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwineffects/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwineffects/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwinscreenedges/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwinscreenedges/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwintabbox/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwintabbox/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwintouchscreen/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwintouchscreen/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/kwinvirtualkeyboard/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/kwinvirtualkeyboard/index.docbook
+/usr/share/doc/HTML/tr/kcontrol/windowbehaviour/index.cache.bz2
+/usr/share/doc/HTML/tr/kcontrol/windowbehaviour/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/desktop/index.cache.bz2
 /usr/share/doc/HTML/uk/kcontrol/desktop/index.docbook
 /usr/share/doc/HTML/uk/kcontrol/kwindecoration/button.png

@@ -7,7 +7,7 @@
 #
 Name     : kwin
 Version  : 5.27.4.1
-Release  : 116
+Release  : 117
 URL      : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz.sig
@@ -16,9 +16,7 @@ Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
 Requires: kwin-bin = %{version}-%{release}
 Requires: kwin-data = %{version}-%{release}
-Requires: kwin-filemap = %{version}-%{release}
 Requires: kwin-lib = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-locales = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
@@ -93,10 +91,8 @@ installed and selected directly in the configuration module of KWin decorations.
 Summary: bin components for the kwin package.
 Group: Binaries
 Requires: kwin-data = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
 Requires: kwin-services = %{version}-%{release}
-Requires: kwin-filemap = %{version}-%{release}
 
 %description bin
 bin components for the kwin package.
@@ -131,34 +127,14 @@ Group: Documentation
 doc components for the kwin package.
 
 
-%package filemap
-Summary: filemap components for the kwin package.
-Group: Default
-
-%description filemap
-filemap components for the kwin package.
-
-
 %package lib
 Summary: lib components for the kwin package.
 Group: Libraries
 Requires: kwin-data = %{version}-%{release}
-Requires: kwin-libexec = %{version}-%{release}
 Requires: kwin-license = %{version}-%{release}
-Requires: kwin-filemap = %{version}-%{release}
 
 %description lib
 lib components for the kwin package.
-
-
-%package libexec
-Summary: libexec components for the kwin package.
-Group: Default
-Requires: kwin-license = %{version}-%{release}
-Requires: kwin-filemap = %{version}-%{release}
-
-%description libexec
-libexec components for the kwin package.
 
 
 %package license
@@ -195,7 +171,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681743490
+export SOURCE_DATE_EPOCH=1682991303
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -228,7 +204,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1681743490
+export SOURCE_DATE_EPOCH=1682991303
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -274,6 +250,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/kconf_update_bin/kwin5_update_default_rules
+/V3/usr/lib64/libexec/kwin-applywindowdecoration
+/V3/usr/lib64/libexec/kwin_killer_helper
+/V3/usr/lib64/libexec/kwin_rules_dialog
 /usr/lib64/kconf_update_bin/kwin5_update_default_rules
 /usr/lib64/libexec/kwin-applywindowdecoration
 /usr/lib64/libexec/kwin_killer_helper
@@ -281,10 +261,12 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/kwin_wayland
+/V3/usr/bin/kwin_wayland_wrapper
+/V3/usr/bin/kwin_x11
 /usr/bin/kwin_wayland
 /usr/bin/kwin_wayland_wrapper
 /usr/bin/kwin_x11
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -490,6 +472,8 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libkwineffects.so
+/V3/usr/lib64/libkwinglutils.so
 /usr/include/kwin_export.h
 /usr/include/kwinanimationeffect.h
 /usr/include/kwinconfig.h
@@ -509,8 +493,6 @@ popd
 /usr/lib64/cmake/KWinEffects/KWinEffectsConfigVersion.cmake
 /usr/lib64/cmake/KWinEffects/KWinEffectsTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KWinEffects/KWinEffectsTargets.cmake
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so
 /usr/lib64/libkwineffects.so
 /usr/lib64/libkwinglutils.so
 
@@ -826,20 +808,61 @@ popd
 /usr/share/doc/HTML/uk/kcontrol/windowspecific/index.cache.bz2
 /usr/share/doc/HTML/uk/kcontrol/windowspecific/index.docbook
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-kwin
-
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkcmkwincommon.so.5.27.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwin.so.5.27.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwineffects.so.5.27.4
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.14
-/usr/lib64/glibc-hwcaps/x86-64-v3/libkwinglutils.so.5.27.4
+/V3/usr/lib64/libkcmkwincommon.so.5
+/V3/usr/lib64/libkcmkwincommon.so.5.27.4
+/V3/usr/lib64/libkwin.so.5
+/V3/usr/lib64/libkwin.so.5.27.4
+/V3/usr/lib64/libkwineffects.so.14
+/V3/usr/lib64/libkwineffects.so.5.27.4
+/V3/usr/lib64/libkwinglutils.so.14
+/V3/usr/lib64/libkwinglutils.so.5.27.4
+/V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
+/V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
+/V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so
+/V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_script.so
+/V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_windowswitcher.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kcm_kwin4_genericscripted.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_blur_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_desktopgrid_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_diminactive_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_glide_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_invert_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_magiclamp_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_magnifier_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_mouseclick_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_mousemark_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_overview_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_showpaint_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_thumbnailaside_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_tileseditor_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_trackmouse_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_windowview_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_wobblywindows_config.so
+/V3/usr/lib64/qt5/plugins/kwin/effects/configs/kwin_zoom_config.so
+/V3/usr/lib64/qt5/plugins/kwin/plugins/MouseButtonToKeyPlugin.so
+/V3/usr/lib64/qt5/plugins/kwin/plugins/colordintegration.so
+/V3/usr/lib64/qt5/plugins/kwin/plugins/krunnerintegration.so
+/V3/usr/lib64/qt5/plugins/kwin/plugins/libKWinNightColorPlugin.so
+/V3/usr/lib64/qt5/plugins/org.kde.kdecoration2/kwin5_aurorae.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_effects.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_scripts.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_virtualdesktops.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwindecoration.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinrules.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinxwayland.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings/kcm_virtualkeyboard.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinoptions.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinscreenedges.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintabbox.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintouchscreen.so
+/V3/usr/lib64/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kwincompositing.so
+/V3/usr/lib64/qt5/qml/org/kde/kwin/decoration/libdecorationplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kwin/decorations/plastik/libplastikplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kwin/private/effects/libeffectsplugin.so
+/V3/usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/libkcmkwincommon.so.5
 /usr/lib64/libkcmkwincommon.so.5.27.4
 /usr/lib64/libkwin.so.5
@@ -906,11 +929,6 @@ popd
 /usr/lib64/qt5/qml/org/kde/kwin/private/effects/qmldir
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/qmldir
-/usr/share/clear/optimized-elf/other*
-
-%files libexec
-%defattr(-,root,root,-)
-/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)

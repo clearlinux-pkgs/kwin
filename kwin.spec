@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 5.27.4.1
-Release  : 117
-URL      : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/kwin-5.27.4.1.tar.xz.sig
+Version  : 5.27.5
+Release  : 118
+URL      : https://download.kde.org/stable/plasma/5.27.5/kwin-5.27.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.5/kwin-5.27.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.5/kwin-5.27.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -60,7 +60,6 @@ BuildRequires : pkgconfig(lcms2)
 BuildRequires : pkgconfig(libdrm)
 BuildRequires : pkgconfig(libpipewire-0.3)
 BuildRequires : pkgconfig(libxcvt)
-BuildRequires : pkgconfig(wayland-protocols)
 BuildRequires : pkgconfig(xkbcommon)
 BuildRequires : pkgconfig(xkbcommon-x11)
 BuildRequires : plasma-framework-dev
@@ -73,6 +72,8 @@ BuildRequires : solid-dev
 BuildRequires : sonnet-dev
 BuildRequires : systemd-dev
 BuildRequires : wayland-dev
+BuildRequires : wayland-protocols
+BuildRequires : wayland-protocols-dev
 BuildRequires : xcb-util-cursor-dev
 BuildRequires : xcb-util-dev
 BuildRequires : xcb-util-image-dev
@@ -163,15 +164,15 @@ services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-5.27.4.1
-cd %{_builddir}/kwin-5.27.4.1
+%setup -q -n kwin-5.27.5
+cd %{_builddir}/kwin-5.27.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682991303
+export SOURCE_DATE_EPOCH=1684868060
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -204,7 +205,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682991303
+export SOURCE_DATE_EPOCH=1684868060
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -811,13 +812,13 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /V3/usr/lib64/libkcmkwincommon.so.5
-/V3/usr/lib64/libkcmkwincommon.so.5.27.4
+/V3/usr/lib64/libkcmkwincommon.so.5.27.5
 /V3/usr/lib64/libkwin.so.5
-/V3/usr/lib64/libkwin.so.5.27.4
+/V3/usr/lib64/libkwin.so.5.27.5
 /V3/usr/lib64/libkwineffects.so.14
-/V3/usr/lib64/libkwineffects.so.5.27.4
+/V3/usr/lib64/libkwineffects.so.5.27.5
 /V3/usr/lib64/libkwinglutils.so.14
-/V3/usr/lib64/libkwinglutils.so.5.27.4
+/V3/usr/lib64/libkwinglutils.so.5.27.5
 /V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 /V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 /V3/usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so
@@ -864,13 +865,13 @@ popd
 /V3/usr/lib64/qt5/qml/org/kde/kwin/private/effects/libeffectsplugin.so
 /V3/usr/lib64/qt5/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/libkcmkwincommon.so.5
-/usr/lib64/libkcmkwincommon.so.5.27.4
+/usr/lib64/libkcmkwincommon.so.5.27.5
 /usr/lib64/libkwin.so.5
-/usr/lib64/libkwin.so.5.27.4
+/usr/lib64/libkwin.so.5.27.5
 /usr/lib64/libkwineffects.so.14
-/usr/lib64/libkwineffects.so.5.27.4
+/usr/lib64/libkwineffects.so.5.27.5
 /usr/lib64/libkwinglutils.so.14
-/usr/lib64/libkwinglutils.so.5.27.4
+/usr/lib64/libkwinglutils.so.5.27.5
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 /usr/lib64/qt5/plugins/kpackage/packagestructure/kwin_effect.so

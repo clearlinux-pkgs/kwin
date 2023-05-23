@@ -35,3 +35,6 @@ xcb-util-xrm-dev
 xwayland
 clr-hardware-files
 pciutils-dev
+wayland-protocols
+wayland-protocols-dev
+plasma-wayland-protocols-dev

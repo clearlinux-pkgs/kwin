@@ -38,3 +38,5 @@ pciutils-dev
 wayland-protocols
 wayland-protocols-dev
 plasma-wayland-protocols-dev
+libqaccessibilityclient-dev
+qtbase-staticdev

@@ -3,7 +3,7 @@
 attica-dev
 breeze
 freetype-dev
-kactivities-dev
+#kactivities-dev
 kdecoration-dev
 kglobalaccel-dev
 kidletime-dev
@@ -18,7 +18,6 @@ libcap-dev
 libepoxy-dev
 libinput-dev
 libxkbcommon-dev
-plasma-framework-dev
 qtbase-staticdev
 solid-dev
 sonnet-dev
@@ -40,3 +39,7 @@ wayland-protocols-dev
 plasma-wayland-protocols-dev
 libqaccessibilityclient-dev
 qtbase-staticdev
+kwayland-dev
+plasma-activities-dev
+kglobalaccel-dev
+kglobalacceld-dev

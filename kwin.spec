@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 6.0.2
-Release  : 130
-URL      : https://download.kde.org/stable/plasma/6.0.2/kwin-6.0.2.tar.xz
-Source0  : https://download.kde.org/stable/plasma/6.0.2/kwin-6.0.2.tar.xz
-Source1  : https://download.kde.org/stable/plasma/6.0.2/kwin-6.0.2.tar.xz.sig
+Version  : 6.0.3.1
+Release  : 131
+URL      : https://download.kde.org/stable/plasma/6.0.3/kwin-6.0.3.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/6.0.3/kwin-6.0.3.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/6.0.3/kwin-6.0.3.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0 MIT
@@ -89,10 +89,9 @@ BuildRequires : xcb-util-xrm-dev
 BuildRequires : xwayland
 
 %description
-ColorBlindness correction shader with adjustable intensity. Can correct for:
-* Protanopia (Greatly reduced reds)
-* Deuteranopia (Greatly reduced greens)
-* Tritanopia (Greatly reduced blues)
+Aurorae is a themeable window decoration for KWin.
+It supports theme files consisting of several SVG files for decoration and buttons. Themes can be
+installed and selected directly in the configuration module of KWin decorations.
 
 %package bin
 Summary: bin components for the kwin package.
@@ -170,15 +169,15 @@ services components for the kwin package.
 
 
 %prep
-%setup -q -n kwin-6.0.2
-cd %{_builddir}/kwin-6.0.2
+%setup -q -n kwin-6.0.3.1
+cd %{_builddir}/kwin-6.0.3.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1711151827
+export SOURCE_DATE_EPOCH=1711655883
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -239,7 +238,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1711151827
+export SOURCE_DATE_EPOCH=1711655883
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
@@ -1045,8 +1044,8 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libkcmkwincommon.so.6.0.2
-/V3/usr/lib64/libkwin.so.6.0.2
+/V3/usr/lib64/libkcmkwincommon.so.6.0.3
+/V3/usr/lib64/libkwin.so.6.0.3
 /V3/usr/lib64/qt6/plugins/kf6/packagestructure/kwin_aurorae.so
 /V3/usr/lib64/qt6/plugins/kf6/packagestructure/kwin_decoration.so
 /V3/usr/lib64/qt6/plugins/kf6/packagestructure/kwin_effect.so
@@ -1096,9 +1095,9 @@ popd
 /V3/usr/lib64/qt6/qml/org/kde/kwin/private/effects/libeffectsplugin.so
 /V3/usr/lib64/qt6/qml/org/kde/kwin/private/kdecoration/libkdecorationprivatedeclarative.so
 /usr/lib64/libkcmkwincommon.so.6
-/usr/lib64/libkcmkwincommon.so.6.0.2
+/usr/lib64/libkcmkwincommon.so.6.0.3
 /usr/lib64/libkwin.so.6
-/usr/lib64/libkwin.so.6.0.2
+/usr/lib64/libkwin.so.6.0.3
 /usr/lib64/qt6/plugins/kf6/packagestructure/kwin_aurorae.so
 /usr/lib64/qt6/plugins/kf6/packagestructure/kwin_decoration.so
 /usr/lib64/qt6/plugins/kf6/packagestructure/kwin_effect.so

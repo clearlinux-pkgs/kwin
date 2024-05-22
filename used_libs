@@ -27,7 +27,6 @@ libKF6XmlGui.so.6
 libKGlobalAccelD.so.0
 libKScreenLocker.so.6
 libKWaylandClient.so.6
-libPlasmaActivities.so.6
 libQt6Core.so.6
 libQt6DBus.so.6
 libQt6Gui.so.6

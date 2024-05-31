@@ -9,7 +9,7 @@
 #
 Name     : kwin
 Version  : 6.0.5
-Release  : 134
+Release  : 135
 URL      : https://download.kde.org/stable/plasma/6.0.5/kwin-6.0.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.0.5/kwin-6.0.5.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.0.5/kwin-6.0.5.tar.xz.sig

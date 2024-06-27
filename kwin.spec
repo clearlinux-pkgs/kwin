@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : kwin
-Version  : 6.1.1
-Release  : 138
-URL      : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.tar.xz.sig
+Version  : 6.1.1.2
+Release  : 139
+URL      : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.2.tar.xz
+Source1  : https://download.kde.org/stable/plasma/6.1.1/kwin-6.1.1.2.tar.xz.sig
 Source2  : D7574483BB57B18D.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -180,15 +180,15 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) D7574483BB57B18D' gpg.status
-%setup -q -n kwin-6.1.1
-cd %{_builddir}/kwin-6.1.1
+%setup -q -n kwin-6.1.1.2
+cd %{_builddir}/kwin-6.1.1.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1719431007
+export SOURCE_DATE_EPOCH=1719503704
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -249,7 +249,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1719431007
+export SOURCE_DATE_EPOCH=1719503704
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kwin
 cp %{_builddir}/kwin-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kwin/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
